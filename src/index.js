@@ -2,7 +2,7 @@ const blessed = require('blessed')
 const contrib = require('blessed-contrib')
 const screen = blessed.screen()
 const grid = new contrib.grid({rows: 16, cols: 16, screen: screen})
-const alertOn = 0.05 // Alert when stocks change by 0.05%
+const alertOn = 5 // Alert when stocks change by 5%
 
 screen.render()
 
@@ -73,6 +73,9 @@ client.on('connect', (_conn) => {
               lastAlerts[metric.s] = now.getTime()
               process.stdout.write('\u0007')
             }
+          }
+          metrics[metric.s].line.options.style.border = {
+            fg: hasAlert ? (last.p < first.p ? 'red' : 'green') : 'cyan'
           }
           metrics[metric.s].line.setLabel((hasAlert ? '\x1b[31m[!!!!!]\x1b[0m ' : '') + metric.s.split(':').pop() + ' $' + last.p.toFixed(4) + ' Vol' + last.v.toFixed(4) + ' MinMax%' + (pctChange).toFixed(2))
           metrics[metric.s].line.setData([
