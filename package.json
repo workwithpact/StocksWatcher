@@ -1,0 +1,18 @@
+{
+  "name": "stockswatcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Leclair <alex@213a.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.21",
+    "dotenv": "^8.2.0",
+    "websocket": "^1.0.33"
+  }
+}
